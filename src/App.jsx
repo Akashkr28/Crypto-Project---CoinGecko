@@ -1,11 +1,12 @@
 import './App.css'
+import CoinTable from './components/Cointable/CoinTable'
 
 function App() {
   
 
   return (
     <>
-      Hello
+      <CoinTable/>
     </>
   )
 }
