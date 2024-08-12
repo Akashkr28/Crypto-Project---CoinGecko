@@ -1,15 +1,28 @@
 import { useEffect, useState } from "react";
 import { fetchCoinData } from "../../services/fetchCoinData";
+import { useQuery } from "react-query";
 
 function CoinTable() {
-    //useEffect function is called up to fetch "fetchCoinData.js" to perform its respective function
-    useEffect(() =>{
-        fetchCoinData(1, 'usd')
-    },[]);
+    
+    const [page, setPage] = useState(1);
+    const {data, isLoading, isError, error}= useQuery(['coins', page], () => fetchCoinData(page, 'usd'), {
+        retry: 2,
+        retryDelay: 1000,
+        cacheTime: 1000 * 60 * 2,
+    });
 
+    if(isLoading){
+        return <div>Loading...</div>
+    }
+    if(isError){
+        return <div>Error {error.message}</div>
+    }
+    useEffect(() => {
+        console.log(data);
+    }, [data])
     return (
           
-        <>Coin Table</>
+        <>Coin Table <button onClick={() => setPage(page + 1)}>Click</button> {page}</>
     )
 
 }
