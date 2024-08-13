@@ -2,15 +2,18 @@ import './App.css'
 import CoinTable from './components/Cointable/CoinTable'
 import Navbar from './components/Navbar/Navbar'
 import Banner from './components/Banner/Banner'
+import { useState } from 'react'
 
 function App() {
+
+  const [currency, setCurrency] = useState('usd')
   
 
   return (
     <>
-      <Navbar/>
+      <Navbar setCurrency={setCurrency}/>
       <Banner/>
-      <CoinTable/>
+      <CoinTable currency={currency}/>
     </>
   )
 }
