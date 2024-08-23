@@ -2,10 +2,10 @@ import BannerImage from "../../assets/banner2.jpeg"
 
 function Banner() {
     return(
-        <div className="w-full h-[20rem] relative">
+        <div className="w-full h-[20rem] relative px-32">
             <img 
                 src={BannerImage} 
-                className="h-full w-full"
+                className="h-full w-full rounded-md"
                 alt="" />
 
             <div className="absolute top-20 left-0 right-0 mx-auto w-[20rem]">

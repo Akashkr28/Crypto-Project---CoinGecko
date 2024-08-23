@@ -37,8 +37,8 @@ function CoinTable() {
 
     return (
           <div className="my-5 flex flex-col items-center justify-center gap-5 w-[80vw] mx-auto">
-            <div className="w-full bg-yellow-400 text-black flex py-4 px-2 font-semibold items-center justify-center">
-                <div className="basis-[35%]">
+            <div className="w-full bg-yellow-400 text-black flex py-4 px-2 font-semibold items-center justify-center rounded-xl">
+                <div className="basis-[35%] px-20">
                     Coin
                 </div>
                 <div className="basis-[25%]">
@@ -55,13 +55,13 @@ function CoinTable() {
                     {isLoading && <div>Loading...</div>}
                     {data && data.map((coin) => {
                         return (
-                            <div onClick={() => handleCoinRedirect(coin.id)} key={coin.id} className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between cursor-pointer">
+                            <div onClick={() => handleCoinRedirect(coin.id)} key={coin.id} className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between cursor-pointer hover:bg-slate-400 rounded-lg hover:text-black">
                                 <div className="flex items-center justify-start gap-3 basis-[35%]">
                                     <div className="w-[5rem] h-[5rem]">
                                         <img src={coin.image} className="w-full h-full" loading="lazy"/>
                                     </div>
 
-                                    <div className="flex flex-col">
+                                    <div className="flex flex-col ">
                                         <div className="text-3xl">{coin.name}</div>
                                         <div className="text-xl">{coin.symbol}</div>
                                     </div>
