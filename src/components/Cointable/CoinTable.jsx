@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import currencyStore from '../../state/store'
 import { useNavigate } from "react-router-dom";
 import PageLoader from "../PageLoader/PageLoader";
+import { longDecimalToShort, numToConvert } from "../util/util";
 
 
 function CoinTable() {
@@ -71,10 +72,10 @@ function CoinTable() {
                                         {coin.current_price}
                                     </div>
                                     <div className="basis-[20%]">
-                                        {coin.price_change_24h}
+                                        {longDecimalToShort(coin.price_change_24h)}
                                     </div>
                                     <div className="basis-[20%]">
-                                        {coin.market_cap}
+                                        {numToConvert(coin.market_cap)} Cr
                                     </div>
 
                                 
