@@ -56,7 +56,7 @@ function CoinTable() {
                 <div className="w-full bg-yellow-400 text-black flex py-4 px-2 font-semibold items-center justify-center rounded-xl">
                     <div className="basis-[35%] px-20">
                         <p>Coin</p>
-                        <CryptoDrawer compareCoinsData={compareCoins} setCompareCoins={setCompareCoins} disable={compareCoins.length < 2}></CryptoDrawer>
+                        <CryptoDrawer compareCoinsData={compareCoins} setCompareCoins={setCompareCoins} disable={compareCoins.length < 2}/>
                     </div>
                     <div className="basis-[25%]">Price</div>
                     <div className="basis-[20%]">24h change</div>
@@ -81,8 +81,12 @@ function CoinTable() {
                                         <div className="text-lg md:text-3xl">{coin.name}</div>
                                         <div className="text-xl font-light flex items-center gap-1">
                                             <p>{coin.symbol}</p>
-                                            <button>
-                                                
+                                            <button
+                                                disabled={compareCoins.length >= 2}
+                                                onCliclk={(e) => addToCompareOnClick(e, coin)}
+                                                className="leading-none whitespace-nowrap h-4 w-fit px-1 grid place-content-center rounded-2xl bg-yellow-600 text-black text-xs"  
+                                            >
+                                                Add to compare
                                             </button>
                                             </div>
                                     </div>

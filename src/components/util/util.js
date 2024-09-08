@@ -14,3 +14,27 @@ export function longDecimalToShort (decimal) {
     }
     return decimal;
 }
+
+export function getTime(date){
+    let hour = date.getHours();
+    let minutes = date.getMinutes().toString().padStart(2, '0');
+    let timeString = `${hour}:${minutes} AM`;
+    if (hour > 12){
+        timeString = `${(hour -12).toString().padStart(2, '0')}:${minutes} PM`;
+    }
+    return timeString;
+}
+
+export function getPriceLabels(arr, days){
+    const labels = arr.map((item) => {
+        let date = new Date(item[0]);
+        let time = getTime(date);
+        return days === 1 ? time : date.toLocaleDateString();
+    });
+    return labels;
+}
+
+export function getPriceData(arr){
+    let priceData = arr.map((item) => item[1]);
+    return priceData;
+}
