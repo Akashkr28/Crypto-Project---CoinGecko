@@ -64,9 +64,7 @@ function CoinTable() {
                 </div>
 
                 <div className="flex flex-col w-[80vw] mx-auto">
-                    {isLoading && <div>Loading...</div>}
-                    {data && data.map((coin) => {
-                        return (
+                    {tableData.map((coin) => (
                             <div onClick={() => handleCoinRedirect(coin.id)} 
                                 key={coin.id}
                                 className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between cursor-pointer hover:bg-slate-400 rounded-lg hover:text-black"
@@ -100,8 +98,7 @@ function CoinTable() {
                                         {numToConvert(coin.market_cap)} Cr
                                     </div>    
                             </div>
-                        );
-                    })}
+                    ))}
                 </div>
             </div>    
         </InfiniteScroll>
