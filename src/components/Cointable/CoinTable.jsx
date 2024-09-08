@@ -1,70 +1,92 @@
 import { useState } from "react";
-import { fetchCoinData } from "../../services/fetchCoinData";
-import { useQuery } from "react-query";
-// import { CurrencyContext } from "../../context/CurrencyContext";
-import currencyStore from '../../state/store'
 import { useNavigate } from "react-router-dom";
-import PageLoader from "../PageLoader/PageLoader";
 import { longDecimalToShort, numToConvert } from "../util/util";
+import InfiniteScroll from 'react-infinite-scroll-component';
+import useInfiniteScroll from "../../hooks/useInfiniteScroll";
+import CryptoDrawer from "../CryptoDrawer/CryptoDrawer";
 
 
 function CoinTable() {
 
-    const {currency} = currencyStore();
-
     const navigate = useNavigate();
-    
-    const [page, setPage] = useState(1);
-    const {data, isLoading, isError, error}= useQuery(['coins', page, currency], () => fetchCoinData(page, currency), {
-        cacheTime: 1000 * 60 * 2,
-        staleTime: 1000 * 60 * 2,
-    });
+    const [compareCoins, setCompareCoins] = useState([]);
+  
+
+    const { tableData, hasMore, fetchMore } = useInfiniteScroll();
+    console.log(tableData)
+
 
     function handleCoinRedirect(id) {
         navigate(`/details/${id}`);
     }
 
-        // if(isLoading){
-        //     return <div>Loading...</div>
-        // }
-    if(isError){
-        return <div>Error {error.message}</div>
-    }
-
-    if(isLoading){
-        return <PageLoader/>
+    function addToCompareOnClick(e, {image, id, name, symbol, market_cap_rank}) {
+        e.stopPropagation();
+        if(compareCoins.length >= 2) {
+            console.log("Cannot compare more than 2 coins");
+            return;
+        }
+        const coinObj = {
+            id : id,
+            thumb : image,
+            name : name,
+            symbol : symbol,
+            market_cap_rank : market_cap_rank
+        }
+        setCompareCoins([...compareCoins, coinObj]);
+        e.target.textContent = "Added ✔️"
     }
 
 
     return (
-          <div className="my-5 flex flex-col items-center justify-center gap-5 w-[80vw] mx-auto">
-            <div className="w-full bg-yellow-400 text-black flex py-4 px-2 font-semibold items-center justify-center rounded-xl">
-                <div className="basis-[35%] px-20">
-                    Coin
+        <InfiniteScroll
+            dataLength={tableData.length}
+            next={fetchMore}
+            hasMore={hasMore}
+            loader= {
+                <div className="w-full grid place-content-center pb-3">
+                    <span className="loading loading-spinner loading-lg"></span>
                 </div>
-                <div className="basis-[25%]">
-                    Price
+            }
+            endMessage={<p>No more coins to load</p>}
+            refreshFunction={() => {}}
+            pullDownToRefresh={false}
+        >
+            <div className="my-5 flex flex-col items-center justify-center gap-5 w-[80vw] mx-auto">
+                <div className="w-full bg-yellow-400 text-black flex py-4 px-2 font-semibold items-center justify-center rounded-xl">
+                    <div className="basis-[35%] px-20">
+                        <p>Coin</p>
+                        <CryptoDrawer compareCoinsData={compareCoins} setCompareCoins={setCompareCoins} disable={compareCoins.length < 2}></CryptoDrawer>
+                    </div>
+                    <div className="basis-[25%]">Price</div>
+                    <div className="basis-[20%]">24h change</div>
+                    <div className="basis-[20%]">Market Cap</div>
                 </div>
-                <div className="basis-[20%]">
-                    24h change
-                </div>
-                <div className="basis-[20%]">
-                    Market Cap
-                </div>
-            </div>
+
                 <div className="flex flex-col w-[80vw] mx-auto">
                     {isLoading && <div>Loading...</div>}
                     {data && data.map((coin) => {
                         return (
-                            <div onClick={() => handleCoinRedirect(coin.id)} key={coin.id} className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between cursor-pointer hover:bg-slate-400 rounded-lg hover:text-black">
+                            <div onClick={() => handleCoinRedirect(coin.id)} 
+                                key={coin.id}
+                                className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between cursor-pointer hover:bg-slate-400 rounded-lg hover:text-black"
+                                >
+
                                 <div className="flex items-center justify-start gap-3 basis-[35%]">
                                     <div className="w-[5rem] h-[5rem]">
-                                        <img src={coin.image} className="w-full h-full" loading="lazy"/>
+                                        <img src={coin.image}
+                                        className="w-full h-full" loading="lazy"
+                                        alt={`${coin.name} logo`}/>
                                     </div>
 
                                     <div className="flex flex-col ">
-                                        <div className="text-3xl">{coin.name}</div>
-                                        <div className="text-xl">{coin.symbol}</div>
+                                        <div className="text-lg md:text-3xl">{coin.name}</div>
+                                        <div className="text-xl font-light flex items-center gap-1">
+                                            <p>{coin.symbol}</p>
+                                            <button>
+                                                
+                                            </button>
+                                            </div>
                                     </div>
                                 </div>
                                 
@@ -76,30 +98,14 @@ function CoinTable() {
                                     </div>
                                     <div className="basis-[20%]">
                                         {numToConvert(coin.market_cap)} Cr
-                                    </div>
-
-                                
+                                    </div>    
                             </div>
                         );
                     })}
                 </div>
-                
-                <div className="flex gap-4 justify-center items-center">
-                    <button
-                        disabled={page === 1} 
-                        onClick={() => setPage(page-1)} 
-                        className="btn btn-primary btn-wide text-white text-2xl">
-                            Prev
-                    </button>
-                    <button 
-                        onClick={() => setPage(page+1)} 
-                        className="btn btn-secondary btn-wide text-white text-2xl">
-                            Next
-                    </button>
-                </div>
-          </div>
-    )
-
+            </div>    
+        </InfiniteScroll>
+    );
 }
 
 export default CoinTable;
