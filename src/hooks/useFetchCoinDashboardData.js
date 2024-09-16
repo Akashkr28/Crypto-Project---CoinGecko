@@ -22,3 +22,5 @@ function useFetchCoinDashboardData(coinId, currency) {
         isLoading,
     };
 }
+
+export default useFetchCoinDashboardData;
