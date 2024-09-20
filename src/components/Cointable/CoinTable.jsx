@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { longDecimalToShort, numToConvert } from "../util/util";
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -13,7 +13,7 @@ function CoinTable() {
   
 
     const { tableData, hasMore, fetchMore } = useInfiniteScroll();
-    console.log(tableData)
+    console.log(tableData);
 
 
     function handleCoinRedirect(id) {
