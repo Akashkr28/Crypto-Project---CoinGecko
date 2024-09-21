@@ -37,7 +37,6 @@ function CoinTable() {
         e.target.textContent = "Added ✔️"
     }
 
-
     return (
         <InfiniteScroll
             dataLength={tableData.length}
@@ -67,7 +66,7 @@ function CoinTable() {
                     {tableData.map((coin) => (
                             <div onClick={() => handleCoinRedirect(coin.id)} 
                                 key={coin.id}
-                                className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between cursor-pointer hover:bg-slate-400 rounded-lg hover:text-black"
+                                className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between cursor-pointer"
                                 >
 
                                 <div className="flex items-center justify-start gap-3 basis-[35%]">
