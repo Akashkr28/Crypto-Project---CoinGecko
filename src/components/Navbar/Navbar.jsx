@@ -2,6 +2,7 @@
 // import { CurrencyContext } from "../../context/CurrencyContext";
 import currencyStore from '../../state/store';
 import { useNavigate } from 'react-router-dom';
+import ThemeSwapBtn from '../ThemeSwapBtn/ThemeSwapBtn';
 
 function Navbar() {
 
@@ -14,7 +15,7 @@ function Navbar() {
     }
 
     return (
-                <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100">
         <div className="navbar-start">
             <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -38,6 +39,7 @@ function Navbar() {
                 <li><a onClick={() => setCurrency('usd')}>USD</a></li>
             </ul>
             </div>
+            <ThemeSwapBtn/>
         </div>
         <div onClick={goToHome} className="navbar-center">
             <a className="btn btn-ghost text-xl">Crypto Tracker</a>
