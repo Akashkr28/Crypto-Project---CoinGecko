@@ -12,7 +12,7 @@ function useInfiniteScroll() {
     };
 
     const { data, fetchNextpage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(
-        ["coins", currency],
+        ['coins', currency],
         fetchCoins,
         {
             getNextPageParam: (lastPage, pages) => {

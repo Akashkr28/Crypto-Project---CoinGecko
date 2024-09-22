@@ -1,9 +1,10 @@
 import { useQuery } from "react-query"
+import { useParams } from "react-router-dom";
 import { fetchCoinDetails } from "../services/fetchCoinDetails";
 import currencyStore from '../state/store';
 
-function useFetchCoin(coinId){
-    
+function useFetchCoin(){
+    const { coinId } = useParams();
     const { currency } = currencyStore();
 
     const { isError, isLoading, data: coin } = useQuery(["coin", coinId], () => fetchCoinDetails(coinId),{
@@ -15,7 +16,8 @@ function useFetchCoin(coinId){
         currency,
         isError,
         isLoading,
-        coin
+        coin,
+        coinId
     }
 }
 

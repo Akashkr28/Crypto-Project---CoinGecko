@@ -33,9 +33,9 @@ function CompareTable({ coinIDs }) {
                     <CompareTableRow type="currency" data1={coin1Data?.market_data?.ath[currency]} data2={coin2Data?.market_data?.ath[currency]} diff={"All Time High"} />
                     <CompareTableRow type="currency" data1={coin1Data?.market_data?.atl[currency]} data2={coin2Data?.market_data?.atl[currency]} diff={"All Time Low"} />
                     <CompareTableRow type="percentage" data1={coin1Data?.market_data?.price_change_percentage_24h} data2={coin2Data?.market_data?.price_change_percentage_24h} diff={"24h Price Change"} />
-                    <CompareTableRow type="percentage" data1={coin1Data?.market_data?.price_change_percentage_7d} data2={coin2Data?.market_data?.price_change_percentage_7d} diff={"7d Price Change"} />
                     <CompareTableRow type="percentage" data1={coin1Data?.market_data?.price_change_percentage_30d} data2={coin2Data?.market_data?.price_change_percentage_30d} diff={"1 Month Price Change"} />
                     <CompareTableRow type="percentage" data1={coin1Data?.market_data?.price_change_percentage_1y} data2={coin2Data?.market_data?.price_change_percentage_1y} diff={"1 Year Price Change"} />
+                    <CompareTableRow type="currency" data1={coin1Data?.market_data?.market_cap[currency]} data2={coin2Data?.market_data?.market_cap[currency]} diff={"Market Cap"}/>
                 </tbody> : <div></div>}
             </table>
         </div>

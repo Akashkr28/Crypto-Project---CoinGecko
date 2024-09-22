@@ -67,27 +67,29 @@ function CoinTable() {
                             <div onClick={() => handleCoinRedirect(coin.id)} 
                                 key={coin.id}
                                 className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between cursor-pointer"
-                                >
+                            >
 
                                 <div className="flex items-center justify-start gap-3 basis-[35%]">
                                     <div className="w-[5rem] h-[5rem]">
                                         <img src={coin.image}
-                                        className="w-full h-full" loading="lazy"
-                                        alt={`${coin.name} logo`}/>
+                                        className="w-full h-full" 
+                                        loading="lazy"
+                                        alt={`${coin.name} logo`}
+                                        />
                                     </div>
 
-                                    <div className="flex flex-col ">
+                                    <div className="flex flex-col">
                                         <div className="text-lg md:text-3xl">{coin.name}</div>
                                         <div className="text-xl font-light flex items-center gap-1">
                                             <p>{coin.symbol}</p>
                                             <button
                                                 disabled={compareCoins.length >= 2}
-                                                onCliclk={(e) => addToCompareOnClick(e, coin)}
-                                                className="leading-none whitespace-nowrap h-4 w-fit px-1 grid place-content-center rounded-2xl bg-yellow-600 text-black text-xs"  
+                                                onClick={(e) => addToCompareOnClick(e, coin)}
+                                                className="leading-none whitespace-nowrap h-4 w-fit px-1 grid place-content-center rounded-2xl bg-yellow-700 text-black text-xs hover:bg-yellow-200"    
                                             >
                                                 Add to compare
                                             </button>
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 
