@@ -66,7 +66,7 @@ function CoinTable() {
                     {tableData.map((coin) => (
                             <div onClick={() => handleCoinRedirect(coin.id)} 
                                 key={coin.id}
-                                className="w-full bg-transparent flex py-4 px-2 font-semibold items-center justify-between cursor-pointer hover:bg-[#ffcc6d8a] rounded-xl"
+                                className="w-full bg-transparent flex py-4 px-2 font-semibold items-center justify-between cursor-pointer hover:bg-[#ffcc6d8a] rounded-xl transition-shadow duration-200  hover:shadow-lg hover:shadow-gray-400 "
                             >
 
                                 <div className="flex items-center justify-start gap-3 basis-[35%]">
