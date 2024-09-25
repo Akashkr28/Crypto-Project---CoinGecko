@@ -33,8 +33,8 @@ function useFetchTwoCoinData(coinIDs){
 
     return {
         isCoin1Error,
-        isCoin2Error,
         isCoin1Loading,
+        isCoin2Error,
         isCoin2Loading,
         coin1Data,
         coin2Data,

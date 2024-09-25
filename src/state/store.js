@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const store = create((set) => ({
-    Currency: 'usd',
+    currency: 'usd',
     setCurrency: (newCurrency) => set((state) => {
         return{
             ...state,
