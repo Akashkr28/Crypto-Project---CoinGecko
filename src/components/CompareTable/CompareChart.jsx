@@ -2,6 +2,9 @@ import React from "react";
 import currencyStore from "../../state/store";
 import { getPriceData, getPriceLabels } from "../util/util";
 import { Line } from "react-chartjs-2";
+import { Chart as ChartJS } from "chart.js/auto";
+import { CategoryScale } from 'chart.js'
+import { Chart } from "react-chartjs-2";
 
 function CompareChart({ data1, data2, coinIds, days  }) {
     let { currency } = currencyStore();

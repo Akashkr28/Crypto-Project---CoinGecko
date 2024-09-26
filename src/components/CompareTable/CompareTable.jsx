@@ -5,7 +5,7 @@ import useFetchTwoCoinData from "../../hooks/useFetchTwoCoinData";
 
 function CompareTable({ coinIDs }) {
 
-    let {coin1Data, coin2Data, isCoin1Error, isCoin2Error, isCoin1Loading, isCoin2Loading, currency} = useFetchTwoCoinData(coinIDs);
+    let {coin1Data, coin2Data, isCoin1Error, isCoin2Error, isCoin1Loading, isCoin2Loading, currency} = useFetchTwoCoinData(coinIDs = ["", ""]);
     console.log(coin1Data, coin2Data);
 
     if (isCoin1Loading || isCoin2Loading) {

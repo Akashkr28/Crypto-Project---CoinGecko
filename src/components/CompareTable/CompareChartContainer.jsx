@@ -59,7 +59,7 @@ function CompareChartContainer({ coinIds }) {
             </ul>
           </div>
     
-          <div className="chart w-full container">
+          <div className="chart w-full h-96 container">
             <h1 className="font-light text-3xl mb-2">Price Chart Compare</h1>
             {data1.prices || data2.prices ? (
               <>
